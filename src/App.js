@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import styled from "styled-components";
 
 import {
@@ -12,67 +11,28 @@ import {
   SearchIcon,
 } from "./components/header";
 
-export const RecipeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  width: 300px;
-  box-shadow: 0 3px 10px 0 #aaa;
-`;
+import { RecipeComponent } from "./components/recipe";
 
-export const RecipeImage = styled.img`
-  object-fit: cover;
-  height: 200px;
-`;
+/////styles for app
 
-export const RecipeTitle = styled.span`
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
-  margin: 10px 0;
-`;
-
-export const IngredientsText = styled.span`
-  font-size: 18px;
-  border: solid 1px green;
-  color: black;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 4px;
-  color: green;
-  text-align: center;
-  margin-bottom: 12px;
-`;
-
-export const SeeMoreText = styled(IngredientsText)`
-  color: #eb3300;
-  border: solid 1px #eb3300;
-`;
-
-export const RecipeComponent = (props) => {
-  const { recipeObj } = props;
-  return (
-    <RecipeContainer>
-      <RecipeImage src={recipeObj.image} />
-      <RecipeTitle>{recipeObj.label}</RecipeTitle>
-      <IngredientsText>See Complete Recipe</IngredientsText>
-      <SeeMoreText>See Complete Recipe</SeeMoreText>
-    </RecipeContainer>
-  );
-};
-
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const RecipeListContainer = styled.div`
+const RecipeListContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 30px;
   gap: 20px;
   justify-content: space-evenly;
+`;
+
+const DefaultLoading = styled.img`
+  height: 200px;
+  margin: 20%;
+  opacity: 50%;
 `;
 
 const App = () => {
@@ -116,10 +76,13 @@ const App = () => {
       </Header>
 
       <RecipeListContainer>
-        {recipeList.length &&
+        {recipeList.length ? (
           recipeList.map((recipeObj, index) => (
             <RecipeComponent key={index} recipeObj={recipeObj.recipe} />
-          ))}
+          ))
+        ) : (
+          <DefaultLoading src="hamburger.svg" />
+        )}
       </RecipeListContainer>
     </Container>
   );

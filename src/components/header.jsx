@@ -39,6 +39,7 @@ export const SearchInput = styled.input`
   margin-left: 15px;
   font-size: 16px;
   font-weight: bold;
+  overflow: hidden;
 `;
 
 export const SearchIcon = styled.img`
