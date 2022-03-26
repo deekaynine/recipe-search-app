@@ -39,10 +39,6 @@ const App = () => {
   const [timeoutId, updateTimeoutId] = useState();
   const [recipeList, updateRecipeList] = useState([]);
 
-  const APP_ID = "dd3ffea2";
-
-  const APP_KEY = "b4b37afad59e070a14fd1b07d5fdccc3";
-
   const fetchRecipe = async (searchString) => {
     const APP_ID = "dd3ffea2";
 
